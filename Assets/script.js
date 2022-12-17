@@ -2,7 +2,8 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-
+var displayDateEl = $('#currentDay');
+// var eventData = $('')
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -11,13 +12,15 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-$('.saveBtn').on('click', function(){
+$('.saveBtn').on('click', function() {
  var textContent = $(this).siblings('.description').val();
  var key = $(this).parent().attr('id');
 
- localStorage.setItem(key, textContent)
+ localStorage.setItem(key, textContent);
+ console.log(textContent);
+ 
 })
-
+});
   //
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -28,8 +31,30 @@ $('.saveBtn').on('click', function(){
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
+  // localStorage.getItem(textContent)
+
+
   //
   // TODO: Add code to display the current date in the header of the page.
+// var CurrentDateAndTime = new Date();
+function displayDate() {
+  var CurrentDateAndTime = dayjs() + 'th'.format('dddd, MMMM D');
+  displayDateEl.text(CurrentDateAndTime);
+}
 
-  $("#currentDay").text('hello world')
-});
+displayDate();
+
+
+
+
+
+
+// var month = d.getMonth()+1;
+// var day = d.getDate();
+
+// var output = d.getFullYear() + '/' +
+//     (month<10 ? '0' : '') + month + '/' +
+//     (day<10 ? '0' : '') + day;
+//   $("#currentDay").text(output.formatDate('mm-dd-yy'));
+  // console.log(CurrentDateAndTime);
+
