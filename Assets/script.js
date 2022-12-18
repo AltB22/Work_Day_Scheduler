@@ -3,7 +3,7 @@
 // in the html.
 
 var displayDateEl = $('#currentDay');
-// var eventData = $('')
+var eventData = $('.container-fluid')
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -27,6 +27,19 @@ $('.saveBtn').on('click', function() {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+function getCurrentTime() {
+  var currentHour = dayjs().hour();
+
+  for (i = 0; i < currentHour; i++) {
+  var now = currentHour[i];
+  console.log(currentHour);
+  if (currentHour > $(this).parent().attr('id').parse().val()){
+    $('.hour').parent.className = "time-block-present";
+  };
+  }
+};
+
+getCurrentTime();
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
@@ -38,8 +51,8 @@ $('.saveBtn').on('click', function() {
   // TODO: Add code to display the current date in the header of the page.
 // var CurrentDateAndTime = new Date();
 function displayDate() {
-  var CurrentDateAndTime = dayjs() + 'th'.format('dddd, MMMM D');
-  displayDateEl.text(CurrentDateAndTime);
+  var CurrentDateAndTime = dayjs().format('dddd, MMMM D');
+  displayDateEl.text(CurrentDateAndTime + 'th');
 }
 
 displayDate();
@@ -49,12 +62,5 @@ displayDate();
 
 
 
-// var month = d.getMonth()+1;
-// var day = d.getDate();
 
-// var output = d.getFullYear() + '/' +
-//     (month<10 ? '0' : '') + month + '/' +
-//     (day<10 ? '0' : '') + day;
-//   $("#currentDay").text(output.formatDate('mm-dd-yy'));
-  // console.log(CurrentDateAndTime);
 
