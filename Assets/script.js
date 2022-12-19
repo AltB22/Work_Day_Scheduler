@@ -21,6 +21,7 @@ $('.saveBtn').on('click', function() {
 
  localStorage.setItem(key, textContent);
 //  console.log(textContent);
+
  
 })
 });
@@ -31,16 +32,20 @@ $('.saveBtn').on('click', function() {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
 function getCurrentTime() {
+ 
   
   // console.log(timeBlockHour)
-
-  for (i = 0; i < timeBlockHour; i++) {
-  var currentHourBlock = [];
-  var hourBlocks = timeBlockHour[i].attr('id');
-  console.log(hourBlocks)
-  if (hourBlocks < $(this).parent().attr('id')){
+  
+  for (i = 0; i < timeBlockHour.length; i++) {
     
-    $(hourBlocks).child('textarea').addClass("future");
+  var currentHourBlock = [i];
+  // console.log(currentHourBlock);
+  var hourBlock = JSON.parse(timeBlockHour.attr('id'));
+  // console.log(hourBlock);
+  // console.log(i);
+  if (hourBlock.val < currentHour) {
+  console.log(hourBlock);
+    $(currentHourBlock).addClass("past");
   };
   }
 };
@@ -51,6 +56,9 @@ getCurrentTime();
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   // localStorage.getItem(textContent)
+  var key = localStorage.key
+  var savedEvent = JSON.parse(localStorage.getItem(key.val));
+  console.log(savedEvent);
 
 
   //
