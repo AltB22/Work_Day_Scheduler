@@ -3,9 +3,8 @@
 // in the html.
 
 var displayDateEl = $('#currentDay');
-var eventData = $('.container-fluid');
-var currentHour = dayjs().hour();
 var timeBlockHour = $('.time-block');
+var eventData = $('.description');
 
 
 $(function () {
@@ -31,36 +30,54 @@ $('.saveBtn').on('click', function() {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-function getCurrentTime() {
- 
-  
+
+// function getCurrentTime() {
   // console.log(timeBlockHour)
   
-  for (i = 0; i < timeBlockHour.length; i++) {
-    
-  var currentHourBlock = [i];
-  // console.log(currentHourBlock);
-  var hourBlock = JSON.parse(timeBlockHour.attr('id'));
+  // for (i = 0; i < timeBlockHour.length; i++) {
+  $.each($('.time-block'), function() {
+  var currentHour = dayjs().hour();
+  // console.log(currentHour);
+  // var currentHourBlock = [];
+  // console.log(timeBlockHour[i]);
+  // var hourBlock = timeBlockHour[i];
+  var hourBlockId = timeBlockHour.attr('id');
   // console.log(hourBlock);
-  // console.log(i);
-  if (hourBlock.val < currentHour) {
-  console.log(hourBlock);
-    $(currentHourBlock).addClass("past");
-  };
+  
+  if (hourBlockId < currentHour) {
+  // console.log(hourBlock);
+    $(this).addClass("past");
   }
-};
+  else if (hourBlockId === currentHour) {
+      $(this).addClass("present");
+    }
+  else {
+    ($(this).addClass("future"));
+  }
+  });
+// };
 
-getCurrentTime();
+// getCurrentTime();
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   // localStorage.getItem(textContent)
-  var key = localStorage.key
-  var savedEvent = JSON.parse(localStorage.getItem(key.val));
+
+  let displayEvent = () => {
+  Object.keys(localStorage).forEach((key) => {
+  // for (i = 0; i < localStorage.length; i++) {
+  // var key = localStorage.key;
+  // console.log(key);
+  var savedEvent = localStorage.getItem(key);
+
+  if (key === )
+  eventData.textContent = savedEvent;
   console.log(savedEvent);
+  });
+  }
 
-
+displayEvent();
   //
   // TODO: Add code to display the current date in the header of the page.
 // var CurrentDateAndTime = new Date();
