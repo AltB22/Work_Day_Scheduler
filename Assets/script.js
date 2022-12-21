@@ -37,18 +37,18 @@ $('.saveBtn').on('click', function() {
   // for (i = 0; i < timeBlockHour.length; i++) {
   $.each($('.time-block'), function() {
   var currentHour = dayjs().hour();
-  // console.log(currentHour);
-  // var currentHourBlock = [];
+  console.log(currentHour);
+  var currentHourBlock = $(this).attr('id');
   // console.log(timeBlockHour[i]);
   // var hourBlock = timeBlockHour[i];
  
   // console.log(hourBlock);
   
-  if (hourBlockId < currentHour) {
+  if (currentHourBlock < currentHour) {
   // console.log(hourBlock);
     $(this).addClass("past");
   }
-  else if (hourBlockId === currentHour) {
+  else if (currentHourBlock == currentHour) {
       $(this).addClass("present");
     }
   else {
