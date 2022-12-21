@@ -3,9 +3,9 @@
 // in the html.
 
 var displayDateEl = $('#currentDay');
-var timeBlockHour = $('.time-block');
-var eventData = $('.description');
-
+var timeBlockEl = $('.time-block');
+var eventDescription = $('.description');
+var hourBlockId = timeBlockEl.attr('id');
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -41,7 +41,7 @@ $('.saveBtn').on('click', function() {
   // var currentHourBlock = [];
   // console.log(timeBlockHour[i]);
   // var hourBlock = timeBlockHour[i];
-  var hourBlockId = timeBlockHour.attr('id');
+ 
   // console.log(hourBlock);
   
   if (hourBlockId < currentHour) {
@@ -64,20 +64,31 @@ $('.saveBtn').on('click', function() {
   // attribute of each time-block be used to do this?
   // localStorage.getItem(textContent)
 
-  let displayEvent = () => {
-  Object.keys(localStorage).forEach((key) => {
+  // let displayEvent = () => {
+  Object.keys(localStorage).forEach(function(key) {
   // for (i = 0; i < localStorage.length; i++) {
   // var key = localStorage.key;
   // console.log(key);
-  var savedEvent = localStorage.getItem(key);
 
-  if (key === )
-  eventData.textContent = savedEvent;
-  console.log(savedEvent);
+  $(`#${String(key)} .description`).val(localStorage.getItem(key));
   });
-  }
+//   var savedEvent = localStorage.getItem(key);
 
-displayEvent();
+//   if (key == hourBlockId) { 
+//   console.log(savedEvent);
+//   console.log(hourBlockId)
+
+//   $('.description').innerHTML = localStorage.getItem(key);
+//   // eventDescription.textContent= savedEvent.val;
+//   // console.log(key)
+//   }
+//   else {
+//     return null;
+//   }
+// });
+//   };
+  
+// displayEvent();
   //
   // TODO: Add code to display the current date in the header of the page.
 // var CurrentDateAndTime = new Date();
