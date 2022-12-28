@@ -39,7 +39,7 @@ $('.saveBtn').on('click', function() { //listener for class of saveBtn on click 
   let currentHour = dayjs().hour(); //uses dayjs to get the current hour of the day (in 24hr time)
   // console.log(currentHour);
 
-  let currentHourBlock = $(this).attr('id');//sets var currentHourBlock equal to the id ('9', '10','11; etc..) of each time block it iterates through.
+  let currentHourBlock = $(this).attr('id');//sets var currentHourBlock equal to the id ('9', '10','11, etc..) of each time block it iterates through.
   
   if (currentHourBlock < currentHour) {  //if currentHourBlock is less than the currentHour...
       $(this).addClass("past");
@@ -77,12 +77,9 @@ $('.saveBtn').on('click', function() { //listener for class of saveBtn on click 
   // TODO: Add code to display the current date in the header of the page.
 
 function displayDate() {
-  var currentDate = dayjs().format('dddd, MMMM D');
-   //uses dayjs to get the current date in format ex: December 21, 2022
-  // displayDateEl.text(currentDate + daySuffix.val); 
-  // console.log(displayDateEl)
-  //sets the text content of the global var displayDateEl as the currentDate + the string 'th'
-  //Below if else if series adds 'st', 'rd', 'nd', & 'th' appropriapely to the end of each date of the month created by dayjs.  Note..I tried using esle (displayDateEl.text(currentDate + 'th')); rather than list the rest out...but it stayed stuck on 'rd'.  Also tried switch case (see commented out on line 111) but returned undefined).
+  var currentDate = dayjs().format('dddd, MMMM D');//uses dayjs to get the current date in format ex: December 21, 2022
+  
+//Below if else if series adds 'st', 'rd', 'nd', & 'th' appropriapely to the end of each date of the month created by dayjs.  Note..I tried using esle (displayDateEl.text(currentDate + 'th')); rather than list the rest out...but it stayed stuck on 'rd'.  Also tried switch case (see commented out on line 111) but returned undefined).
   if (currentDate == 1, 21, 31) {
     displayDateEl.text(currentDate + 'st');
   }
