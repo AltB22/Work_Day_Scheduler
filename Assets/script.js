@@ -7,7 +7,7 @@ var displayDateEl = $('#currentDay'); //uses jquery to correspond the id of the 
 var timeBlockEl = $('.time-block');// class of each parent div for every time block row
 var eventDescription = $('.description');//text area content in eachn hour block
 var hourBlockId = timeBlockEl.attr('id');//not currently used
-
+// var daySuffix = '';//not currently used
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -32,30 +32,39 @@ $('.saveBtn').on('click', function() { //listener for class of saveBtn on click 
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
 
-  $.each($('.time-block'), function () {//iterates through each time block
+  $.each($('.time-block'), function timeoutHourBlock() {//iterates through each time block
+    setTimeout(function() {
+      // console.log("Timeout expired");
+    }, 3600 * 1000)
   let currentHour = dayjs().hour(); //uses dayjs to get the current hour of the day (in 24hr time)
   // console.log(currentHour);
 
   let currentHourBlock = $(this).attr('id');//sets var currentHourBlock equal to the id ('9', '10','11; etc..) of each time block it iterates through.
   
   if (currentHourBlock < currentHour) {  //if currentHourBlock is less than the currentHour...
-      $(this).addClass("past"); //then add class of 'past' (which will style the text area grey)
-   } else {
-      $(this).removeClass("past");
+      $(this).addClass("past");
+      // timeoutHourBlock();
+      //then add class of 'past' (which will style the text area grey)
    }
-  if (currentHourBlock == currentHour) {  //if currentHourBlock is equal in value to the currentHour...
-      $(this).addClass("present");//then add class of 'present' (which will style the text area red)
+  else if (currentHourBlock == currentHour) {  //if currentHourBlock is equal in value to the currentHour...
+      $(this).addClass("present");
+      // timeoutHourBlock();
+     //then add class of 'present' (which will style the text area red)
    }  //else {
   //     $(this).removeClass("present");
   //  }
-  if (currentHourBlock > currentHour) { //if currentHourBlock is greater than the currentHour...
-      ($(this).addClass("future")); //then add class of 'future' (which will style the text area green)
+  else //(currentHourBlock > currentHour) { //if currentHourBlock is greater than the currentHour...
+      ($(this).addClass("future"));
+      // timeoutHourBlock();
+      //then add class of 'future' (which will style the text area green)
    } //else {
   //   $(this).removeClass("future");
   //  }
+ 
+//}
+);
 
-});
-  
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
@@ -68,29 +77,47 @@ $('.saveBtn').on('click', function() { //listener for class of saveBtn on click 
   // TODO: Add code to display the current date in the header of the page.
 
 function displayDate() {
-  var currentDate = dayjs().format('dddd, MMMM D'); //uses dayjs to get the current date in format ex: December 21, 2022
-  displayDateEl.text(currentDate + 'th'); //sets the text content of the global var displayDateEl as the currentDate + the string 'th'
-  //Need to adjust this for 'st', 'rd', 'nd'
+  var currentDate = dayjs().format('dddd, MMMM D');
+   //uses dayjs to get the current date in format ex: December 21, 2022
+  // displayDateEl.text(currentDate + daySuffix.val); 
+  // console.log(displayDateEl)
+  //sets the text content of the global var displayDateEl as the currentDate + the string 'th'
+  //Below if else if series adds 'st', 'rd', 'nd', & 'th' appropriapely to the end of each date of the month created by dayjs.  Note..I tried using esle (displayDateEl.text(currentDate + 'th')); rather than list the rest out...but it stayed stuck on 'rd'.  Also tried switch case (see commented out on line 111) but returned undefined).
   if (currentDate == 1, 21, 31) {
     displayDateEl.text(currentDate + 'st');
   }
-  if (currentDate == 2, 22) {
+  else if (currentDate == 2, 22) {
     displayDateEl.text(currentDate + 'nd');
   }
-  if (currentDate == 3, 23) {
+  else if (currentDate == 3, 23) {
     displayDateEl.text(currentDate + 'rd');
   }
-  else {
-    displayDateEl.text(currentDate + 'th');
-  }
+  else if (currentDate == 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,25,26,27,28,29,30);{
+  displayDateEl.text(currentDate + 'th');
+  };
 };
 
 displayDate(); //calls the above function.
 
 
+//let currentDay = new Date().getDate();
 
 
+//let currentDay = (new Date().getDate())
 
-
+// switch(currentDay){
+  
+//   // case 1,21,31:
+//   //   daySuffix = 'st';
+//   //   break;
+//   // case 2,22:
+//   //   daySuffix = 'nd';
+//   //   break;
+//   case 27:
+//      daySuffix = 'th';
+//     // break;
+// //   default:
+// //     daySuffix = 'th';
+// }
 
 
