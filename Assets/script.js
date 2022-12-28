@@ -97,7 +97,7 @@ function displayDate() {
 displayDate(); //calls the above function.
 
 
-//let currentDay = new Date().getDate();
+
 
 
 //let currentDay = (new Date().getDate())
